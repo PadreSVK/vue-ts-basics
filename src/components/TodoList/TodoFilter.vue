@@ -1,7 +1,7 @@
 <template>
     <input id="query" type="query" v-model="filter.query" placeholder="Search" />
     <select id="filter" @change="changeFilter($event.target.value)">
-        <option value="comboboxModel">All</option>
+        <option value="all">All</option>
         <option value="completed">Completed</option>
         <option value="non-completed">Not Completed</option>
     </select>
