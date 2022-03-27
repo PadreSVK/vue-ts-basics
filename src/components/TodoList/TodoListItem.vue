@@ -8,14 +8,14 @@
             />
             {{ completedMark }}
             <div :class="{ strikethrough: done }">{{ description }}</div>
+            {{ datetime }}
         </div>
-        {{ datetime }}
     </li>
 </template>
 <script setup lang="ts">
 import { computed } from "vue";
 
-interface Props{
+interface Props {
     done: boolean
     description: string
     completed?: Date | null
