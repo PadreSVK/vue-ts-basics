@@ -1,11 +1,10 @@
 <template>
     <input id="query" type="query" v-model="filter.query" placeholder="Search" />
-    <br />
-    <label for="includeCompleted">Include completed</label>
-    <input type="checkbox" id="includeCompleted" v-model="filter.includeCompleted" />
-    <br />
-    <label for="includeNonCompleted">Include Non completed</label>
-    <input type="checkbox" id="includeNonCompleted" v-model="filter.includeNonCompleted" />
+    <select id="filter" @change="changeFilter($event.target.value)">
+        <option value="comboboxModel">All</option>
+        <option value="completed">Completed</option>
+        <option value="non-completed">Not Completed</option>
+    </select>
 </template>
 
 <script setup lang="ts">
@@ -17,6 +16,26 @@ const filter: Filter = reactive({ query: "", includeCompleted: true, includeNonC
 const emits = defineEmits<{
     (e: "filter-change", filter: Filter): void
 }>();
+
+function changeFilter(type: "all" | "completed" | "non-completed") {
+
+    switch (type) {
+        case 'all':
+            filter.includeCompleted = true
+            filter.includeNonCompleted = true
+            break;
+        case 'completed':
+            filter.includeCompleted = true
+            filter.includeNonCompleted = false
+            break;
+        case 'non-completed':
+            filter.includeCompleted = false
+            filter.includeNonCompleted = true
+            break;
+        default:
+            break;
+    }
+}
 
 watch(filter, () => {
     emits('filter-change', filter)
