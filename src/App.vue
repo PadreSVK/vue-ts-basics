@@ -102,6 +102,10 @@ function search(filterObject: FilterObject) {
 </script>
 
 
-<style>
-
+<style scoped>
+.logo {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
 </style>
