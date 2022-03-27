@@ -1,15 +1,10 @@
 <template>
     <div class="center" @keydown.h="keypCalled">
-        <input id="query" type="query" v-model="filterObject.query" placeholder="Search" />
-        <br />
-        <label for="includeCompleted">Include completed</label>
-        <input type="checkbox" id="includeCompleted" v-model="filterObject.includeCompleted" />
-        <br />
-        <label for="includeNonCompleted">Include Non completed</label>
-        <input type="checkbox" id="includeNonCompleted" v-model="filterObject.includeNonCompleted" />
+        <TodoFilter @filter-change="filterChanged" />
+
         <ul>
             <TodoListItem
-                v-for="todo in todos"
+                v-for="todo in props.todos"
                 :key="todo.id"
                 :done="todo.done"
                 v-model:description="todo.description"
@@ -32,32 +27,27 @@
     </div>
 </template>
 
-<script setup>
-import { reactive, ref, watch } from 'vue';
+<script setup lang="ts">
+import { ref } from 'vue';
 import TodoListItem from './TodoListItem.vue';
+import TodoFilter from './TodoFilter.vue';
+import type { Filter, TodoItem } from './Models';
 
-const emit = defineEmits(["add-todo", "update-todo", "search"])
 
-defineProps({
-    todos: {
-        required: true
-    }
-})
+const emit = defineEmits<{
+    (e: 'add-todo', description: string): void,
+    (e: 'update-todo', todo: TodoItem): void,
+    (e: 'search', filter: Filter): void,
+}>()
+
+const props = defineProps<{
+    todos: Array<TodoItem>
+}>()
 
 const color = ref("green")
 const description = ref("")
 
-const filterObject = reactive({
-    query: "",
-    includeCompleted: true,
-    includeNonCompleted: true
-})
-
-watch(filterObject, filterObject => {
-    emit('search', filterObject)
-})
-
-function updateTodo(todo) {
+function updateTodo(todo: TodoItem) {
     if (todo.done) {
         todo.completed = new Date()
     }
@@ -74,6 +64,10 @@ function keypCalled() {
 function addTodo() {
     emit('add-todo', description.value)
     description.value = ""
+}
+
+function filterChanged(filter: Filter) {
+    emit('search', filter)
 }
 
 </script>
