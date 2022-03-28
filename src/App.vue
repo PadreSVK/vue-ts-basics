@@ -5,18 +5,22 @@
     </header>
 
     <main>
-        <TodoList
+        <!-- <TodoList
             :todos="filteredTodos"
             @add-todo="createTodo"
             @update-todo="updateTodo"
             @search="search"
-        />
+        /> -->
 
         <br>
         <h1>
             {{store.count}}
+            {{store.age}}
             {{store.double}}
+            <button @click="changeStore" >Click me</button>
         </h1>
+
+        <YesNo/>
     </main>
 
     
@@ -28,9 +32,22 @@ import { useCounterStore } from "@/store";
 import { reactive, ref, type Ref } from 'vue';
 import type { Filter, TodoItem } from './components/TodoList/Models';
 import TodoList from './components/TodoList/TodoList.vue';
+import YesNo from './components/YesNo.vue';
 
 
 const store = useCounterStore()
+
+function changeStore(){
+    //direct change
+    // store.count = 50
+    // store.age = 100
+
+    store.$patch({
+        age: 100,
+        count: 50
+    })
+    // store.increment()
+}
 
 //load from server
 const todos: Array<TodoItem> = reactive([
