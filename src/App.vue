@@ -3,18 +3,15 @@
         <header>
             <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
         </header>
+
         <v-main>
-            <HelloWorld/>
-            <v-data-table/>
-            <button
-                    @click="todoStore.loadTodos"
-                >Load data from server (it ovveride actual state!)</button>
-                <TodoList
-                    :todos="todoStore.filteredTodos"
-                    @add-todo="createTodo"
-                    @update-todo="updateTodo"
-                    @search="search"
-                />
+            <VBtn @click="todoStore.loadTodos">Load data from server (it ovveride actual state!)</VBtn>
+            <TodoList
+                :todos="todoStore.filteredTodos"
+                @add-todo="createTodo"
+                @update-todo="updateTodo"
+                @search="search"
+            />
         </v-main>
     </v-app>
 </template>
