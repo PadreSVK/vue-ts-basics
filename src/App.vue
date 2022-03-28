@@ -1,23 +1,29 @@
-
 <template>
-    <header>
-        <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-    </header>
-    <main>
-        <button @click="todoStore.loadTodos" >Load data from server (it ovveride actual state!)</button>
-        <TodoList
-            :todos="todoStore.filteredTodos"
-            @add-todo="createTodo"
-            @update-todo="updateTodo"
-            @search="search"
-        />
-    </main>
+    <v-app>
+        <header>
+            <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+        </header>
+        <v-main>
+            <HelloWorld/>
+            <v-data-table/>
+            <button
+                    @click="todoStore.loadTodos"
+                >Load data from server (it ovveride actual state!)</button>
+                <TodoList
+                    :todos="todoStore.filteredTodos"
+                    @add-todo="createTodo"
+                    @update-todo="updateTodo"
+                    @search="search"
+                />
+        </v-main>
+    </v-app>
 </template>
 
 <script setup lang="ts">
 import type { Filter, TodoItem } from './components/TodoList/Models';
 import TodoList from './components/TodoList/TodoList.vue';
 import { useTodoStore } from "@/store/todo";
+import HelloWorld from "./components/HelloWorld.vue";
 
 const todoStore = useTodoStore()
 
