@@ -18,17 +18,16 @@ export const useCounterStore = defineStore('counter', {
     },
 })
 
-
-
-const model = undefined as any as YesNoModel
-
+interface YesNoState {
+    model?: YesNoModel
+}
 
 export const useYesNoStore = defineStore('yesno', {
-    state: () => ({ model }),
+    state: () => ({} as YesNoState),
     actions: {
         async changeAnswer() {
             const response = await fetch("https://yesno.wtf/api/")
-            const result : YesNoModel = await response.json()
+            const result: YesNoModel = await response.json()
             this.model = result
         },
     },
