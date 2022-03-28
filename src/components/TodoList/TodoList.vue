@@ -33,7 +33,6 @@ import TodoListItem from './TodoListItem.vue';
 import TodoFilter from './TodoFilter.vue';
 import type { Filter, TodoItem } from './Models';
 
-
 const emit = defineEmits<{
     (e: 'add-todo', description: string): void,
     (e: 'update-todo', todo: TodoItem): void,

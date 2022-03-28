@@ -1,6 +1,6 @@
 <template>
     <input id="query" type="query" v-model="filter.query" placeholder="Search" />
-    <select id="filter" @change="changeFilter($event.target.value)">
+    <select id="filter" @change="changeFilter(($event.target as any).value)">
         <option value="all">All</option>
         <option value="completed">Completed</option>
         <option value="non-completed">Not Completed</option>
