@@ -16,12 +16,12 @@
 
 <script setup lang="ts">
 import { reactive, ref, type Ref } from 'vue';
-import type { TodoItem } from './components/TodoList/Models';
+import type { Filter, TodoItem } from './components/TodoList/Models';
 import TodoList from './components/TodoList/TodoList.vue';
 
 
 
-//load zo serveru
+//load from server
 const todos: Array<TodoItem> = reactive([
     { id: "ab17767429554e27ab181bcfab8d074a", completed: new Date(), done: true, description: "Renard" },
     { id: "3b8c70aef31e4d0184cb9926a4b75f59", done: false, description: "Leclerc" },
@@ -57,15 +57,14 @@ const todos: Array<TodoItem> = reactive([
 
 async function createTodo(description: string) {
     todos.push({ id: "1123456", done: false, description: description })
-
-    //call na server
-    // load to todos
+    //call to server
+    // load of todos
     //todos = reactive(await... )
 }
 
 async function updateTodo(todo: TodoItem) {
-    //call na server
-    //update todo
+    // call to server
+    // update todo
     // reload todos
 
     const todoToUpdate = todos.find(i => i.id == todo.id)
@@ -74,13 +73,7 @@ async function updateTodo(todo: TodoItem) {
 
 const filteredTodos: Ref<Array<TodoItem>> = ref(todos)
 
-interface FilterObject {
-    query: string
-    includeCompleted: boolean
-    includeNonCompleted: boolean
-}
-
-function search(filterObject: FilterObject) {
+function search(filterObject: Filter) {
     console.log({ ...filterObject });
     const { includeCompleted, includeNonCompleted, query } = filterObject
 
@@ -91,11 +84,9 @@ function search(filterObject: FilterObject) {
     else if (includeCompleted && !includeNonCompleted) {
         result = todos.filter(i => i.done)
     }
-
     if (query) {
         result = result.filter(i => i.description.includes(query))
     }
-
     filteredTodos.value = result
 }
 

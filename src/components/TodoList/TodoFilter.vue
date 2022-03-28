@@ -18,7 +18,6 @@ const emits = defineEmits<{
 }>();
 
 function changeFilter(type: "all" | "completed" | "non-completed") {
-
     switch (type) {
         case 'all':
             filter.includeCompleted = true
