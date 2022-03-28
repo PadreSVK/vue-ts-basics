@@ -3,9 +3,10 @@ import { defineStore } from 'pinia'
 
 interface TodoState {
     todos: Array<TodoItem>
+    filteredTodos: Array<TodoItem>
 }
 
-const todoState: () => TodoState = () => ({ todos: [] })
+const todoState: () => TodoState = () => ({ todos: [], filteredTodos: [] })
 
 function filterTodos(filterObject: Filter, todos: Array<TodoItem>): Array<TodoItem> {
     const { includeCompleted, includeNonCompleted, query } = filterObject
@@ -27,10 +28,14 @@ function filterTodos(filterObject: Filter, todos: Array<TodoItem>): Array<TodoIt
 export const useTodoStore = defineStore("todos", {
     state: todoState,
     actions: {
-        async loadTodos(filter: Filter) {
+        async loadTodos() {
             const response = await fetch("https://jsonplaceholder.typicode.com/todos")
             const result: Array<TodoItem> = await response.json()
-            this.todos = filterTodos(filter, result)
+            this.todos = result
+            this.filteredTodos = result
+        },
+        filterTodos(filter:Filter){
+            this.filteredTodos = filterTodos(filter, this.todos)
         },
         updateTodo(todo: TodoItem) {
             // todo here should be call on server to persist change!
