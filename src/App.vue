@@ -10,16 +10,27 @@
             @add-todo="createTodo"
             @update-todo="updateTodo"
             @search="search"
-        ></TodoList>
+        />
+
+        <br>
+        <h1>
+            {{store.count}}
+            {{store.double}}
+        </h1>
     </main>
+
+    
 </template>
 
 <script setup lang="ts">
+
+import { useCounterStore } from "@/store";
 import { reactive, ref, type Ref } from 'vue';
 import type { Filter, TodoItem } from './components/TodoList/Models';
 import TodoList from './components/TodoList/TodoList.vue';
 
 
+const store = useCounterStore()
 
 //load from server
 const todos: Array<TodoItem> = reactive([
