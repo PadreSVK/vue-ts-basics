@@ -1,4 +1,3 @@
-import type { Filter, TodoItem } from '@/components/TodoList/Models';
 import { defineStore } from 'pinia'
 
 export interface YesNoModel {
@@ -38,24 +37,6 @@ export const useYesNoStore = defineStore('yesno', {
 })
 
 
-
-interface TodoState {
-    todos: Array<TodoItem>
-}
-
-const todoState: () => TodoState = () => ({ todos: [] })
-
-
-export const useTodoStore = defineStore("todos", {
-    state: todoState,
-    actions:{
-        async loadTodos(filter : Filter){
-            const response = await fetch("https://jsonplaceholder.typicode.com/todos")
-            const result: Array<TodoItem> = await response.json()
-            this.todos = result
-        }
-    }
-})
 
 
 
