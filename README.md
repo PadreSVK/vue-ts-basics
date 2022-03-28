@@ -38,3 +38,11 @@ npm run dev
 ```sh
 npm run build
 ```
+
+
+## i18n
+
+```sh
+npm install vue-i18n@9
+npm i --save-dev @intlify/vite-plugin-vue-i18n
+```

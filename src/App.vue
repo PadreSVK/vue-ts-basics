@@ -1,7 +1,24 @@
+<i18n>
+{
+  "en": {
+    "hello": "🥔🥔🥔🥔🥔🥔🥔🥔"
+  },
+  "ja": {
+    "hello": "🍛🍙🍙🍛🍙🍙🍘"
+  }
+}
+</i18n>
+
 <template>
     <v-app>
         <header>
+            <select v-model="locale">
+                <option value="en">en</option>
+                <option value="ja">ja</option>
+            </select>
             <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+            {{ t('message.hello', { msg: 'hello' }) }}
+            {{ t('hello', { msg: 'aaa' }) }}
         </header>
 
         <v-main>
@@ -20,7 +37,11 @@
 import type { Filter, TodoItem } from './components/TodoList/Models';
 import TodoList from './components/TodoList/TodoList.vue';
 import { useTodoStore } from "@/store/todo";
-import HelloWorld from "./components/HelloWorld.vue";
+import { useI18n } from 'vue-i18n';
+
+const { t, locale } = useI18n()
+
+
 
 const todoStore = useTodoStore()
 
