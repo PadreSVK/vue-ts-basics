@@ -6,10 +6,9 @@
             <TodoListItem
                 v-for="todo in props.todos"
                 :key="todo.id"
-                :done="todo.done"
-                v-model:description="todo.description"
+                v-model:title="todo.title"
                 :completed="todo.completed"
-                @toggle-item="updateTodo({ ...todo, done: $event })"
+                @toggle-item="updateTodo({ ...todo, completed: $event })"
             />
         </ul>
         <input
@@ -47,12 +46,12 @@ const color = ref("green")
 const description = ref("")
 
 function updateTodo(todo: TodoItem) {
-    if (todo.done) {
-        todo.completed = new Date()
-    }
-    else {
-        todo.completed = null
-    }
+    // if (todo.done) {
+    //     todo.completed = new Date()
+    // }
+    // else {
+    //     todo.completed = null
+    // }
     emit('update-todo', todo)
 }
 

@@ -1,31 +1,27 @@
 <template>
     <li>
         <div class="row">
-            <input type="checkbox" :checked="props.done" @input="toggle" />
+            <input type="checkbox" :checked="props.completed" @input="toggle" />
             {{ completedMark }}
-            <div :class="{ strikethrough: done }">{{ description }}</div>
-            {{ datetime }}
+            <div :class="{ strikethrough: completed }">{{ title }}</div>
+            <!-- {{ datetime }} -->
         </div>
     </li>
 </template>
 <script setup lang="ts">
 import { computed } from "vue";
+
+
 const props = defineProps<{
-    done: boolean
-    description: string
-    completed?: Date | null
+    title: string
+    completed: boolean
 }>()
 const emit = defineEmits<{
     (e: "toggle-item", checked: boolean): void
 }>()
 
-const datetime = computed(() =>
-    props.done
-        ? "📅" + props.completed?.toLocaleString()
-        : "🥔🥔"
-)
 
-const completedMark = computed(() => props.done ? "✔" : "❌")
+const completedMark = computed(() => props.completed ? "✔" : "❌")
 
 function toggle(event: Event) {
     emit('toggle-item', (event.target as any).checked)

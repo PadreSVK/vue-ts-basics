@@ -4,9 +4,9 @@ export interface Filter {
     includeNonCompleted: boolean
 }
 
-export interface TodoItem {
+export interface TodoItem{
+    userId: string
     id: string
-    done: boolean
-    description: string
-    completed?: Date | null
+    title: string
+    completed: boolean
 }
