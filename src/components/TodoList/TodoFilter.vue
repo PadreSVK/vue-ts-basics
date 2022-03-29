@@ -1,5 +1,5 @@
 <template>
-    <input id="query" type="query" v-model="filter.query" placeholder="Search" />
+    <input id="query" type="query" v-model="innerFilter.query" @change="" placeholder="Search" />
     <select id="filter" @change="changeFilter(($event.target as any).value)">
         <option value="all">All</option>
         <option value="completed">Completed</option>
@@ -11,7 +11,11 @@
 import { reactive, watch } from 'vue';
 import type { Filter } from "./Models";
 
-const filter: Filter = reactive({ query: "", includeCompleted: true, includeNonCompleted: true })
+const props = defineProps<{
+    filter: Filter
+}>()
+
+const innerFilter: Filter = reactive(props.filter)
 
 const emits = defineEmits<{
     (e: "filter-change", filter: Filter): void
@@ -20,24 +24,24 @@ const emits = defineEmits<{
 function changeFilter(type: "all" | "completed" | "non-completed") {
     switch (type) {
         case 'all':
-            filter.includeCompleted = true
-            filter.includeNonCompleted = true
+            innerFilter.includeCompleted = true
+            innerFilter.includeNonCompleted = true
             break;
         case 'completed':
-            filter.includeCompleted = true
-            filter.includeNonCompleted = false
+            innerFilter.includeCompleted = true
+            innerFilter.includeNonCompleted = false
             break;
         case 'non-completed':
-            filter.includeCompleted = false
-            filter.includeNonCompleted = true
+            innerFilter.includeCompleted = false
+            innerFilter.includeNonCompleted = true
             break;
         default:
             break;
     }
 }
 
-watch(filter, () => {
-    emits('filter-change', filter)
+watch(innerFilter, () => {
+    emits('filter-change', innerFilter)
 })
 
 </script>

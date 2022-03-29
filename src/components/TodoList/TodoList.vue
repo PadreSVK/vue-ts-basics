@@ -1,6 +1,6 @@
 <template>
     <div class="center" @keydown.h="keypCalled">
-        <TodoFilter @filter-change="filterChanged" />
+        <TodoFilter :filter="filter" @filter-change="filterChanged" />
 
         <ul>
             <TodoListItem
@@ -39,7 +39,8 @@ const emit = defineEmits<{
 }>()
 
 const props = defineProps<{
-    todos: Array<TodoItem>
+    todos: Array<TodoItem>,
+    filter: Filter
 }>()
 
 const color = ref("green")

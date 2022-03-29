@@ -25,6 +25,7 @@ export const router = createRouter({
         },
         { path: "/todos", name: "Todo", component: import("@/views/Todo.vue") },
         { path: "/profile", name: "UserProfile", component: import("@/views/UserProfile.vue") },
+        { path: "/tasks", name: "Tasks", component: import("@/views/Tasks.vue") },
 
         { path: '/:pathMatch(.*)*', name: 'not-found', component: NotFound },
     ]
