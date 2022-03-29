@@ -6,7 +6,7 @@
         <br />
         <!-- <router-link to="/viewb">View B</router-link> -->
         <router-link
-            :to="{ name: 'ViewB', params: { id: 'asdasdsa' }, query: { query: 'aaaa', age: 123 } }"
+            :to="{ name: 'ViewB', params: { id: 'asdasdsa' }, query: { q: 'aaaa', age: 123 } }"
         >View B</router-link>
         <br />
         <!-- <router-link to="/todos">Todos</router-link> -->
