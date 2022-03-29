@@ -6,13 +6,18 @@
         @add-todo="createTodo"
         @update-todo="updateTodo"
         @search="search"
+        :filter="filter"
     />
 </template>
 
 <script setup lang="ts">
-import type { Filter, TodoItem } from '@/components/TodoList/Models';
-import TodoList from '@/components/TodoList/TodoList.vue';
-import { useTodoStore } from "@/store/todo";
+import type { Filter, TodoItem } from './Models';
+import TodoList from './components/TodoList.vue';
+import { useTodoStore } from "./store";
+import { ref, type Ref } from 'vue';
+
+const filter: Ref<Filter> = ref({ query: "", includeCompleted: true, includeNonCompleted: true })
+
 
 const todoStore = useTodoStore()
 

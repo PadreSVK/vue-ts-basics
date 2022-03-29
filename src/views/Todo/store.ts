@@ -1,4 +1,4 @@
-import type { Filter, TodoItem } from '@/components/TodoList/Models';
+import type { Filter, TodoItem } from './Models';
 import { defineStore } from 'pinia'
 
 interface TodoState {

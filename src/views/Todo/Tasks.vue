@@ -11,9 +11,9 @@
 </template>
 
 <script setup lang="ts">
-import type { Filter, TodoItem } from '@/components/TodoList/Models';
-import TodoList from '@/components/TodoList/TodoList.vue';
-import { useTodoStore } from "@/store/todo";
+import type { Filter, TodoItem } from './Models';
+import TodoList from './components/TodoList.vue';
+import { useTodoStore } from "./store";
 import { onMounted, reactive, watch } from "vue";
 import { useRoute, useRouter, type RouteLocationNormalized } from "vue-router";
 

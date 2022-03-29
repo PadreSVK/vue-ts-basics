@@ -17,7 +17,7 @@ export default defineConfig({
                 manualChunks: {
                     'MyAwesomeChunk': [
                         "./src/views/UserProfile.vue",
-                        "./src/views/Todo.vue"
+                        "./src/views/Todo/Todo.vue"
                     ]
                 }
             }

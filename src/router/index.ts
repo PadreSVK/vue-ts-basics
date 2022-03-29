@@ -23,9 +23,9 @@ export const router = createRouter({
                 metadata: "cupakabra"
             }
         },
-        { path: "/todos", name: "Todo", component: import("@/views/Todo.vue") },
+        { path: "/todos", name: "Todo", component: import("@/views/Todo/Todo.vue") },
         { path: "/profile", name: "UserProfile", component: import("@/views/UserProfile.vue") },
-        { path: "/tasks", name: "Tasks", component: import("@/views/Tasks.vue") },
+        { path: "/tasks", name: "Tasks", component: import("@/views/Todo/Tasks.vue") },
 
         { path: '/:pathMatch(.*)*', name: 'not-found', component: NotFound },
     ]

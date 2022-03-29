@@ -10,7 +10,7 @@
         >View B</router-link>
         <br />
         <!-- <router-link to="/todos">Todos</router-link> -->
-        <router-link :to="{ name: 'Todo' }">Todos</router-link>
+        <router-link :to="{ name: 'Tasks' }">Tasks</router-link>
         <br />
         <router-link :to="{ name: 'UserProfile' }">UserProfile</router-link>
         <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />

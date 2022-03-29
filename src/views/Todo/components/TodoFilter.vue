@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import { reactive, watch } from 'vue';
-import type { Filter } from "./Models";
+import type { Filter } from "../Models";
 
 const props = defineProps<{
     filter: Filter
