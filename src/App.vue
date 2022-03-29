@@ -1,11 +1,16 @@
 
 <template>
     <header>
-        <router-link to="/">View A</router-link>
+        <!-- <router-link to="/">View A</router-link> -->
+        <router-link :to="{ name: 'ViewA' }">View A</router-link>
         <br />
-        <router-link to="/viewb">View B</router-link>
+        <!-- <router-link to="/viewb">View B</router-link> -->
+        <router-link
+            :to="{ name: 'ViewB', params: { id: 'asdasdsa' }, query: { query: 'aaaa', age: 123 } }"
+        >View B</router-link>
         <br />
-        <router-link to="/todos">Todos</router-link>
+        <!-- <router-link to="/todos">Todos</router-link> -->
+        <router-link :to="{ name: 'Todo' }">Todos</router-link>
         <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
     </header>
     <main>
